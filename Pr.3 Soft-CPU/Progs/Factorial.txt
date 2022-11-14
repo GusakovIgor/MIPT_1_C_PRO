@@ -1,0 +1,63 @@
+start
+
+    push 1
+    pop rax
+
+    push 1
+    pop rbx
+
+    in
+    pop rcx
+
+
+    db "\n"
+    sout
+
+    db "Factorial of "
+    sout
+
+    push rcx
+    nout
+
+    db " is "
+    sout
+
+    call :Factorial
+
+    push rax
+    nout
+
+    db "\n"
+    sout
+
+hlt
+
+
+Factorial:
+
+    push 0
+    push rcx
+    je :end
+
+    push 1
+    push rcx
+    je :end
+
+    push rax
+
+    push rbx
+    push 1
+    add
+    pop rbx
+
+    push rbx
+    mult
+    pop rax
+
+    push rbx
+    push rcx
+    je :end
+    call :Factorial
+    end:
+
+    ret

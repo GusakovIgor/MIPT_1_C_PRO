@@ -1,0 +1,343 @@
+start
+call :SquareEquation
+hlt
+
+SquareEquation:
+
+
+
+    in
+    pop [0]
+
+    in
+    pop [1]
+
+    in
+    pop [2]
+
+    push 0.000000
+    pop[3]
+
+    push 0.000000
+    pop[4]
+
+    push [0]
+    push 0.000000
+    sub
+    push 0.000000
+    jne else_0-0
+
+    if_0-0:
+        call :LinearCase
+
+        jmp endif_0-0
+
+    else_0-0:
+        pop[5]
+
+        call :SquareSolver
+
+    endif_0-0:
+
+
+    push 10.000000
+    pop[6]
+
+    loop_0-0:
+        db "!"
+        sout
+
+        push [6]
+        push 1.000000
+        sub
+
+        pop[6]
+
+        push [6]
+        push 0.000000
+        sub
+        push 0.000000
+        ja loop_0-0
+
+    db "song"
+
+ret
+
+
+
+Discriminant:
+
+ pop [100]
+ pop [101]
+ pop [102]
+
+    push 0.000000
+    pop[103]
+
+    push [101]
+    push 2.000000
+    pow
+
+    push 4.000000
+    push [100]
+    mul
+
+    push [102]
+    mul
+
+    sub
+
+    pop[103]
+
+    push 10.000000
+    pop[104]
+
+    loop_1-0:
+        db "!"
+        sout
+
+        push [104]
+        push 1.000000
+        add
+
+        pop[104]
+
+        push [104]
+        push 20.000000
+        sub
+        push 0.000000
+        jb loop_1-0
+
+    push [103]
+
+ret
+
+
+
+LinearCase:
+
+ pop [200]
+ pop [201]
+
+    push [200]
+    push 0.000000
+    sub
+    push 0.000000
+    je else_2-0
+
+    if_2-0:
+        db "\nThere is one root "
+        sout
+
+        push -1.000000
+        push [201]
+        mul
+
+        push [200]
+        div
+
+        nout
+
+        jmp endif_2-0
+
+    else_2-0:
+        push [201]
+        push 0.000000
+        sub
+        push 0.000000
+        je else_2-1
+
+        if_2-1:
+            db "\nThere is no roots"
+            sout
+
+            jmp endif_2-1
+
+        else_2-1:
+            db "\nThere is infinite number of roots"
+            sout
+
+        endif_2-1:
+
+    endif_2-0:
+
+
+    db "LinearCase done\n"
+
+ret
+
+
+
+SquareSolver:
+
+ pop [300]
+ pop [301]
+ pop [302]
+
+    push [302]
+    push 0.000000
+    sub
+    push 0.000000
+    ja else_3-0
+
+    if_3-0:
+        db "\nThere is no roots"
+        sout
+
+        jmp endif_3-0
+
+    else_3-0:
+        push [302]
+        push 0.000000
+        sub
+        push 0.000000
+        jne else_3-1
+
+        if_3-1:
+            db "\nThere is one root "
+            sout
+
+            push -1.000000
+            push [301]
+            mul
+
+            push 2.000000
+            push [300]
+            mul
+
+            div
+
+            nout
+
+            jmp endif_3-1
+
+        else_3-1:
+            db "\nThe first root is "
+            sout
+
+            push -1.000000
+            push [301]
+            mul
+
+            add
+
+            push 2.000000
+            push [300]
+            mul
+
+            div
+
+            nout
+
+            db "\nAnd the second is "
+            sout
+
+            push -1.000000
+            push [301]
+            mul
+
+            sub
+
+            push 2.000000
+            push [300]
+            mul
+
+            div
+
+            nout
+
+        endif_3-1:
+
+    endif_3-0:
+
+
+    db "SquareCase done\n"
+
+ret
+
+
+
+ConditionHell:
+
+
+    push 12.000000
+    push 13.000000
+    sub
+    push 0.000000
+    jb else_4-0
+
+    if_4-0:
+        db "trouble"
+        sout
+
+        jmp endif_4-0
+
+    else_4-0:
+    endif_4-0:
+
+
+    push 1.000000
+    push 2.000000
+    sub
+    push 0.000000
+    jb else_4-2
+
+    if_4-2:
+        db "1"
+        sout
+
+        jmp endif_4-2
+
+    else_4-2:
+        push 2.000000
+        push 3.000000
+        sub
+        push 0.000000
+        jb else_4-3
+
+        if_4-3:
+            db "2"
+            sout
+
+            jmp endif_4-3
+
+        else_4-3:
+            push 3.000000
+            push 4.000000
+            sub
+            push 0.000000
+            jb else_4-4
+
+            if_4-4:
+                db "3"
+                sout
+
+                jmp endif_4-4
+
+            else_4-4:
+                push 4.000000
+                push 5.000000
+                sub
+                push 0.000000
+                jb else_4-5
+
+                if_4-5:
+                    db "4"
+                    sout
+
+                    jmp endif_4-5
+
+                else_4-5:
+                endif_4-5:
+
+            endif_4-4:
+
+        endif_4-3:
+
+    endif_4-2:
+
+
+ret
+
+
+

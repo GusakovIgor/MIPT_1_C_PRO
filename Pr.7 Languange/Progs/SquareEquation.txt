@@ -1,0 +1,120 @@
+song SquareEquation ()
+{
+    new a;
+
+    record a from input;
+    record new b from input;
+    record new c from input;
+
+    choose new x1 as 0;
+    choose new x2 as 0;
+
+    pitch a same 0
+    {
+        LinearCase (b, c);
+    }
+    otherwise
+    {
+        choose new D as Discriminant (a, b, c);
+
+        SquareSolver (a, b, D);
+    }
+
+    choose new i as 10;
+    back_echo (i, 0, 1)
+    {
+        echo ("!");
+    }
+
+    save "song";
+}
+
+
+
+sample Discriminant (a, b, c)
+{
+    choose new disc as 0;
+    choose disc as b^2 - 4*a*c;
+
+    choose new i as 10;
+    reverberation (i, 20, 1)
+    {
+        echo ("!");
+    }
+
+    save disc;
+}
+
+
+sample LinearCase (b, c)
+{
+    pitch b not 0
+    {
+        echo ("\nThere is one root ");
+        echo ((-c)/b);
+    }
+    otherwise pitch c not 0
+    {
+        echo ("\nThere is no roots");
+    }
+    otherwise
+    {
+        echo ("\nThere is infinite number of roots");
+    }
+
+
+    save "LinearCase done\n";
+}
+
+
+sample SquareSolver (a, b, D)
+{
+    pitch D less 0
+    {
+        echo ("\nThere is no roots");
+    }
+    otherwise pitch D same 0
+    {
+        echo ("\nThere is one root ");
+        echo ((-b) / (2*a));
+    }
+    otherwise
+    {
+        echo ("\nThe first root is ");
+        echo (((-b) + sqrt(D)) / (2*a));
+
+        echo ("\nAnd the second is ");
+        echo (((-b) - sqrt(D)) / (2*a));
+    }
+
+
+    save "SquareCase done\n";
+}
+
+
+sample ConditionHell ()
+{
+    pitch 12 higher 13
+    {
+        echo ("trouble");
+    }
+
+    pitch 1 higher 2
+    {
+        echo ("1");
+    }
+    otherwise pitch 2 higher 3
+    {
+        echo ("2");
+    }
+    otherwise pitch 3 higher 4
+    {
+        echo ("3");
+    }
+    otherwise pitch 4 higher 5
+    {
+        echo ("4");
+    }
+
+
+}
